@@ -22,7 +22,7 @@ describe "GameOfLife" do
 
   it "can count neighours alive" do
     @game.birth(1,0)
-    @game.count_neighbours(1,1).should == 0
+    @game.count_neighbours(1,0).should == 0
     @game.birth(1,1)
     @game.count_neighbours(1,1).should == 1
     @game.birth(1,2)
