@@ -1,9 +1,9 @@
-class Grid
+class Game
   attr_reader :height, :width
   attr_accessor :grid
 
   def self.two_d_init(two_dimension)
-    grid = Grid.new(two_dimension[0].size, two_dimension.size)
+    grid = Game.new(two_dimension[0].size, two_dimension.size)
     two_dimension.each_with_index do |row, x|
       row.each_with_index do |col, y|
         grid.grid[[x,y]] = Cell.new(col == 'x')
@@ -41,6 +41,24 @@ class Grid
   end
 
   def evolve
-    #TODO
+    new_grid = grid
+    @height.times do |x|
+      @width.times do |y|
+        count = count_neighbours(x,y)
+        result = nil
+        if grid[[x,y]].alive?
+          # Less than 2 or more than 3 alive neighbours, kill it!
+          result = !((count < 1) || (count > 3))
+        else
+          # Need 3 alive neighbours to spawn next
+          result = (count > 3)
+        end
+        new_grid[[x,y]] = Cell.new(result)
+      end
+    end
+  end
+
+  def count_neighbours(x,y)
+    0
   end
 end

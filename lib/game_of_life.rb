@@ -1,2 +1,2 @@
 require './lib/cell.rb'
-require './lib/grid.rb'
+require './lib/game.rb'
