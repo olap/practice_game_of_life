@@ -10,11 +10,11 @@ When /^I evolve the board$/ do
 end
 
 Then /^the center cell should be dead$/ do
-  @game.game[[@height/2,@width/2]].alive?.should be_false
+  @game.grid[[@height/2,@width/2]].alive?.should be_false
 end
 
 Then /^the center cell should be alive$/ do
-  @game.game[[@height/2,@width/2]].alive?.should be_true
+  @game.grid[[@height/2,@width/2]].alive?.should be_true
 end
 
 Then /^I should see the following board$/ do |table|
