@@ -61,4 +61,16 @@ class Game
   def count_neighbours(x,y)
     0
   end
+
+  def birth(x,y)
+    old = grid[[x,y]].alive?
+    grid[[x,y]] = Cell.new(true)
+    !old
+  end
+
+  def kill(x,y)
+    old = grid[[x,y]].alive?
+    grid[[x,y]] = Cell.new(false)
+    old
+  end
 end
