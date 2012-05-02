@@ -1,8 +1,8 @@
 Given /^the following setup$/ do |table|
-  #table is a Cucumber::Ast::Table
+  table.should be_kind_of(Cucumber::Ast::Table)
   @grid = Grid.two_d_init(table.raw)
   @height = table.raw.size
-  @width = grid.raw[0].size
+  @width = table.raw[0].size
 end
 
 When /^I evolve the board$/ do
@@ -18,7 +18,7 @@ Then /^the center cell should be alive$/ do
 end
 
 Then /^I should see the following board$/ do |table|
-  #table is a Cucumber::Ast::Table
+  table.should be_kind_of(Cucumber::Ast::Table)
   @new_grid = Grid.two_d_init(table.raw)
   Grid.compare(@new_grid, @grid).should be_true
 end
