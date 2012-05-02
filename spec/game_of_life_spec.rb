@@ -30,8 +30,16 @@ describe "GameOfLife" do
   end
 
   it "can evolve" do
-    @game.grid[[1,1]] = Cell.new(true)
+    @game.birth(0,1)
+    @game.birth(1,1)
+    @game.birth(2,1)
     @game.evolve
-    Game.compare(Game.new(3,3), @game).should be_true
+    
+    @mock = Game.new(3,3)
+    @mock.birth(1,0)
+    @mock.birth(1,1)
+    @mock.birth(1,2)
+
+    Game.compare(@mock, @game).should be_true
   end
 end

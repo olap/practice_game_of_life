@@ -41,21 +41,22 @@ class Game
   end
 
   def evolve
-    new_grid = grid
+    new_grid = grid.dup
     @height.times do |x|
       @width.times do |y|
         count = count_neighbours(x,y)
         result = nil
         if grid[[x,y]].alive?
           # Less than 2 or more than 3 alive neighbours, kill it!
-          result = !((count < 1) || (count > 3))
+          result = [2,3].include? count
         else
           # Need 3 alive neighbours to spawn next
-          result = (count > 3)
+          result = (count == 3)
         end
         new_grid[[x,y]] = Cell.new(result)
       end
     end
+    @grid = new_grid
   end
 
   def count_neighbours(x,y)
