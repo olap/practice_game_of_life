@@ -21,8 +21,12 @@ describe "GameOfLife" do
   end
 
   it "can count neighours alive" do
-    @game.grid[[1,1]] = Cell.new(true)
+    @game.birth(1,0)
     @game.count_neighbours(1,1).should == 0
+    @game.birth(1,1)
+    @game.count_neighbours(1,1).should == 1
+    @game.birth(1,2)
+    @game.count_neighbours(1,1).should == 2
   end
 
   it "can evolve" do

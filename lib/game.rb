@@ -59,7 +59,17 @@ class Game
   end
 
   def count_neighbours(x,y)
-    0
+    sum = 0
+    [x-1, x, x+1].each do |a|
+      if a >= 0 && a < @width
+        [y-1, y, y+1].each do |b|
+          if b >= 0 && b < @height && !(a == x && b == y)
+            sum += 1 if grid[[a,b]].alive?
+          end
+        end
+      end
+    end
+    sum
   end
 
   def birth(x,y)
